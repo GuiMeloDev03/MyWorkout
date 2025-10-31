@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "treinos/index"
+  get "treinos/show"
+  get "treinos/new"
+  get "treinos/create"
+  get "treinos/edit"
+  get "treinos/update"
+  get "treinos/destroy"
   get "dietas/index"
   get "dietas/show"
   get "dietas/new"
