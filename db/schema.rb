@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_31_180731) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_31_195256) do
   create_table "alimentos", force: :cascade do |t|
     t.string "nome"
     t.integer "calorias"
@@ -73,6 +73,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_180731) do
     t.index ["dia_dieta_id"], name: "index_item_refeicaos_on_dia_dieta_id"
   end
 
+  create_table "refeicaos", force: :cascade do |t|
+    t.integer "dieta_id", null: false
+    t.string "nome"
+    t.text "descricao"
+    t.integer "calorias"
+    t.decimal "proteinas"
+    t.decimal "carboidratos"
+    t.decimal "gorduras"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dieta_id"], name: "index_refeicaos_on_dieta_id"
+  end
+
   create_table "treinos", force: :cascade do |t|
     t.string "nome"
     t.string "objetivo"
@@ -91,6 +104,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_180731) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_admin"
+    t.string "nome"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -102,5 +116,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_180731) do
   add_foreign_key "exercicio_planos", "exercicios"
   add_foreign_key "item_refeicaos", "alimentos"
   add_foreign_key "item_refeicaos", "dia_dietas"
+  add_foreign_key "refeicaos", "dietas"
   add_foreign_key "treinos", "users"
 end

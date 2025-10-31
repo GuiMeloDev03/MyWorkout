@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dieta: one
+  nome: MyString
+  descricao: MyText
+  calorias: 1
+  proteinas: 9.99
+  carboidratos: 9.99
+  gorduras: 9.99
+
+two:
+  dieta: two
+  nome: MyString
+  descricao: MyText
+  calorias: 1
+  proteinas: 9.99
+  carboidratos: 9.99
+  gorduras: 9.99
