@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dia_treino: one
+  exercicio: one
+  series: 1
+  repeticoes: 1
+  carga_planejada: 9.99
+
+two:
+  dia_treino: two
+  exercicio: two
+  series: 1
+  repeticoes: 1
+  carga_planejada: 9.99

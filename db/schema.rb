@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_31_172458) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_31_180731) do
   create_table "alimentos", force: :cascade do |t|
     t.string "nome"
     t.integer "calorias"
@@ -26,12 +26,39 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_172458) do
     t.index ["dieta_id"], name: "index_dia_dietas_on_dieta_id"
   end
 
+  create_table "dia_treinos", force: :cascade do |t|
+    t.string "nome"
+    t.integer "treino_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["treino_id"], name: "index_dia_treinos_on_treino_id"
+  end
+
   create_table "dietas", force: :cascade do |t|
     t.string "nome"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_dietas_on_user_id"
+  end
+
+  create_table "exercicio_planos", force: :cascade do |t|
+    t.integer "dia_treino_id", null: false
+    t.integer "exercicio_id", null: false
+    t.integer "series"
+    t.integer "repeticoes"
+    t.decimal "carga_planejada"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dia_treino_id"], name: "index_exercicio_planos_on_dia_treino_id"
+    t.index ["exercicio_id"], name: "index_exercicio_planos_on_exercicio_id"
+  end
+
+  create_table "exercicios", force: :cascade do |t|
+    t.string "nome"
+    t.string "grupo_muscular"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "item_refeicaos", force: :cascade do |t|
@@ -44,6 +71,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_172458) do
     t.datetime "updated_at", null: false
     t.index ["alimento_id"], name: "index_item_refeicaos_on_alimento_id"
     t.index ["dia_dieta_id"], name: "index_item_refeicaos_on_dia_dieta_id"
+  end
+
+  create_table "treinos", force: :cascade do |t|
+    t.string "nome"
+    t.string "objetivo"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_treinos_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,7 +96,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_172458) do
   end
 
   add_foreign_key "dia_dietas", "dietas"
+  add_foreign_key "dia_treinos", "treinos"
   add_foreign_key "dietas", "users"
+  add_foreign_key "exercicio_planos", "dia_treinos"
+  add_foreign_key "exercicio_planos", "exercicios"
   add_foreign_key "item_refeicaos", "alimentos"
   add_foreign_key "item_refeicaos", "dia_dietas"
+  add_foreign_key "treinos", "users"
 end
