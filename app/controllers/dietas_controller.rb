@@ -12,6 +12,7 @@ class DietasController < ApplicationController
   def new
     @dieta = Dieta.new
 
+    @dieta.refeicoes.build
     authorize @dieta
   end
 
@@ -35,6 +36,7 @@ class DietasController < ApplicationController
     if @dieta.update(dieta_params)
       redirect_to @dieta, notice: "Dieta atualizada com sucesso!"
     else
+      @dieta.refeicoes.build if @dieta.refeicoes.empty?
       render :edit
     end
   end
@@ -52,6 +54,15 @@ class DietasController < ApplicationController
   end
 
   def dieta_params
-    params.require(:dieta).permit(:nome, :objetivo)
+    params.require(:dieta).permit(
+      :id,
+      :nome,
+      :descricao,
+      :calorias,
+      :proteinas,
+      :carboidratos,
+      :gorduras,
+      :_destroy
+      )
   end
 end
