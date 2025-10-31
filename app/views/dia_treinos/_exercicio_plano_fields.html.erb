@@ -1,0 +1,35 @@
+<div class="exercicio-fields p-4 border border-gray-200 rounded-lg bg-white shadow-sm mb-4 transition-all duration-300 ease-in-out" data-exercicio-plano-target="fields">
+  <div class="flex justify-between items-start mb-4">
+    <h4 class="text-md font-semibold text-gray-700">Novo Exercício</h4>
+    
+    <%= form.hidden_field :_destroy %>
+    <%= link_to "Remover", "#", data: { action: "click->exercicio-plano#removeField" }, class: "text-red-500 hover:text-red-700 text-sm font-medium transition duration-150" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :nome, "Nome do Exercício", class: "block text-sm font-medium text-gray-600" %>
+    <%= form.text_field :nome, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div>
+      <%= form.label :series, "Séries", class: "block text-sm font-medium text-gray-600" %>
+      <%= form.number_field :series, min: 1, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+    </div>
+
+    <div>
+      <%= form.label :repeticoes, "Repetições / Tempo", class: "block text-sm font-medium text-gray-600" %>
+      <%= form.text_field :repeticoes, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "Ex: 10-12 ou 45 seg" %>
+    </div>
+
+    <div>
+      <%= form.label :carga, "Carga (Opcional)", class: "block text-sm font-medium text-gray-600" %>
+      <%= form.text_field :carga, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", placeholder: "Ex: 10kg ou Peso Corporal" %>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <%= form.label :observacoes, "Observações / Instruções", class: "block text-sm font-medium text-gray-600" %>
+    <%= form.text_area :observacoes, rows: 2, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+  </div>
+</div>

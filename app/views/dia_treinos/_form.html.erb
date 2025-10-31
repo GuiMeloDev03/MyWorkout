@@ -1,0 +1,23 @@
+<%= form_with(model: [@treino, @dia_treino], local: true, class: "space-y-6") do |form| %>
+  <% if dia_treino.errors.any? %>
+    <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative">
+      <p class="font-bold">Não foi possível salvar o Dia de Treino:</p>
+      <ul class="list-disc ml-5 mt-2 space-y-1 text-sm">
+        <% dia_treino.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-span-full">
+    <%= form.label :nome, "Nome do Dia de Treino", class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= form.text_field :nome, class: "block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2", placeholder: "Ex: Treino A - Peito, Biceps e Abdômen" %>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <%= form.submit dia_treino.new_record? ? 'Criar Dia de Treino' : 'Atualizar Dia de Treino', class: "cursor-pointer inline-flex justify-center rounded-lg border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150" %>
+  </div>
+<% end %>

@@ -1,0 +1,50 @@
+<div class="max-w-4xl mx-auto">
+  <div class="bg-white shadow rounded-lg p-8">
+    
+    <div class="flex justify-between items-start mb-6 border-b pb-4">
+      <div>
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-1">
+          Dia de Treino: <%= @dia_treino.nome %>
+        </h1>
+        <p class="text-md text-indigo-600">
+          Plano: <%= link_to @treino.nome, @treino, class: "hover:underline" %>
+        </p>
+      </div>
+      <div class="flex space-x-3 mt-1">
+        <%= link_to 'Editar Dia', edit_treino_dia_treino_path(@treino, @dia_treino), class: "text-sm font-medium text-yellow-600 hover:text-yellow-800 transition duration-150" %>
+        <%= link_to 'Voltar para o Plano', @treino, class: "text-sm font-medium text-gray-500 hover:text-gray-700 transition duration-150" %>
+      </div>
+    </div>
+    
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Exercícios Cadastrados</h2>
+    
+    <% if @exercicio_planos.any? %>
+      <div class="space-y-4">
+        <% @exercicio_planos.each do |exercicio| %>
+          <div class="border border-gray-200 rounded-lg p-4 flex justify-between items-center bg-gray-50">
+            <div class="flex flex-col">
+              <span class="font-bold text-lg text-gray-800"><%= exercicio.nome %></span>
+              <span class="text-sm text-gray-600">
+                <%= exercicio.series %> séries de <%= exercicio.repeticoes %> repetições
+                <%= "(Carga: #{exercicio.carga})" if exercicio.carga.present? %>
+              </span>
+              <% if exercicio.observacoes.present? %>
+                <span class="text-xs text-gray-400 italic mt-1">Obs: <%= exercicio.observacoes %></span>
+              <% end %>
+            </div>
+            <div class="flex space-x-2 text-sm">
+              <%= link_to 'Editar', edit_treino_dia_treino_exercicio_plano_path(@treino, @dia_treino, exercicio), class: "text-yellow-600 hover:text-yellow-900" %>
+              <%= button_to 'Excluir', [@treino, @dia_treino, exercicio], method: :delete, data: { turbo_confirm: "Tem certeza que deseja excluir o exercício '#{exercicio.nome}'?" }, class: "text-red-600 hover:text-red-900 bg-transparent border-none p-0" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500 italic mb-6">Ainda não há exercícios para este dia de treino.</p>
+    <% end %>
+
+    <h2 class="text-xl font-bold text-gray-800 mt-8 mb-4 pt-4 border-t">Adicionar Novo Exercício</h2>
+    <%= render 'exercicio_planos/form', treino: @treino, dia_treino: @dia_treino, exercicio_plano: @exercicio_plano %>
+
+  </div>
+</div>

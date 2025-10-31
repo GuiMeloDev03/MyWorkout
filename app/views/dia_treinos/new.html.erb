@@ -1,0 +1,12 @@
+<div class="max-w-xl mx-auto">
+  <div class="bg-white shadow rounded-lg p-8">
+    <h1 class="text-2xl font-bold text-gray-900 mb-6">Novo Dia de Treino para:</h1>
+    <p class="text-indigo-600 mb-6 font-medium"><%= @treino.nome %></p>
+
+    <%= render 'form', treino: @treino, dia_treino: @dia_treino %>
+
+    <div class="mt-6">
+      <%= link_to 'Voltar para o Treino', @treino, class: "text-sm text-gray-500 hover:text-gray-700" %>
+    </div>
+  </div>
+</div>
