@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :dietas
+  resources :dietas do
+    resources :refeicoes, except: [ :index ]
+  end
   resources :treinos do
     resources :dia_treinos, except: [ :index ] do
       resources :exercicios_planos, only: [ :new, :create, :edit, :update, :destroy ]
