@@ -1,0 +1,30 @@
+<%= form_with(model: treino, class: "space-y-6") do |form| %>
+  <% if treino.errors.any? %>
+    <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative">
+      <p class="font-bold">Não foi possível salvar o treino:</p>
+      <ul class="list-disc ml-5 mt-2 space-y-1 text-sm">
+        <% treino.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-span-full">
+    <%= form.label :nome, "Nome do Treino (Ex: Periodização 2025 - Fase Hipertrofia)", class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= form.text_field :nome, class: "block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2", placeholder: "Nome do seu plano de treino" %>
+    </div>
+  </div>
+
+  <div class="col-span-full">
+    <%= form.label :objetivo, "Objetivo Principal", class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= form.text_area :objetivo, rows: 3, class: "block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2", placeholder: "Ex: Ganho de massa muscular, Perda de peso, Força Máxima." %>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <%= form.submit treino.new_record? ? 'Criar Treino' : 'Atualizar Treino', class: "cursor-pointer inline-flex justify-center rounded-lg border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150" %>
+  </div>
+<% end %>

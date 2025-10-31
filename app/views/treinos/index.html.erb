@@ -1,2 +1,27 @@
-<h1>Treinos#index</h1>
-<p>Find me in app/views/treinos/index.html.erb</p>
+<div class="bg-white shadow rounded-lg p-6">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-extrabold text-gray-900">Meus Planos de Treino</h1>
+    <%= link_to 'Novo Treino', new_treino_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150" %>
+  </div>
+
+  <% if @treinos.empty? %>
+    <p class="text-gray-500 italic">Você ainda não possui planos de treino cadastrados. Crie um para começar a planejar!</p>
+  <% else %>
+    <div class="space-y-4">
+      <% @treinos.each do |treino| %>
+        <div class="border border-gray-200 rounded-lg p-4 flex justify-between items-center hover:shadow-md transition duration-150">
+          <div>
+            <p class="text-xl font-semibold text-indigo-600"><%= treino.nome %></p>
+            <p class="text-sm text-gray-500">Objetivo: <%= treino.objetivo.presence || 'Não Definido' %></p>
+            <p class="text-xs text-gray-400 mt-1">Criado em: <%= l treino.created_at, format: :short %></p>
+          </div>
+          <div class="flex space-x-2">
+            <%= link_to 'Visualizar', treino_path(treino), class: "text-indigo-600 hover:text-indigo-900 text-sm font-medium" %>
+            <%= link_to 'Editar', edit_treino_path(treino), class: "text-green-600 hover:text-green-900 text-sm font-medium" %>
+            <%= button_to 'Excluir', treino_path(treino), method: :delete, data: { turbo_confirm: "Tem certeza que deseja excluir o treino '#{treino.nome}'?" }, class: "text-red-600 hover:text-red-900 text-sm font-medium bg-transparent border-none p-0" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
