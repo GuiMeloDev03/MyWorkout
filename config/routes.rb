@@ -1,22 +1,12 @@
 Rails.application.routes.draw do
-  get "treinos/index"
-  get "treinos/show"
-  get "treinos/new"
-  get "treinos/create"
-  get "treinos/edit"
-  get "treinos/update"
-  get "treinos/destroy"
-  get "dietas/index"
-  get "dietas/show"
-  get "dietas/new"
-  get "dietas/create"
-  get "dietas/edit"
-  get "dietas/update"
-  get "dietas/destroy"
   devise_for :users
   resources :dietas
+  resources :treinos do
+    resources :dia_treinos, except: [ :index ] do
+      resources :exercicios_planos, only: [ :new, :create, :edit, :update, :destroy ]
+    end
+  end
+  # get "treinos/:treino_id/dia_treinos/:id", to: "dia_treinos#show", as: :treino_dia_treino
 
   root "dietas#index"
-
-  get "up" => "rails/health#show", as: :rails_health_check
 end
