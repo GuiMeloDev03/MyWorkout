@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  alimento: one
+  dia_dieta: one
+  quantidade: 9.99
+  unidade_medida: MyString
+  descricao: MyString
+
+two:
+  alimento: two
+  dia_dieta: two
+  quantidade: 9.99
+  unidade_medida: MyString
+  descricao: MyString
