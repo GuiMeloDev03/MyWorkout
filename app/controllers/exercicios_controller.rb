@@ -25,7 +25,7 @@ class ExerciciosController < ApplicationController
 
     respond_to do |format|
       if @exercicio.save
-        format.html { redirect_to @exercicio, notice: "Exercicio was successfully created." }
+        format.html { redirect_to @exercicio, notice: "Exercicio criado com sucesso!" }
         format.json { render :show, status: :created, location: @exercicio }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class ExerciciosController < ApplicationController
   def update
     respond_to do |format|
       if @exercicio.update(exercicio_params)
-        format.html { redirect_to @exercicio, notice: "Exercicio was successfully updated.", status: :see_other }
+        format.html { redirect_to @exercicio, notice: "Exercicio atualizado com sucesso", status: :see_other }
         format.json { render :show, status: :ok, location: @exercicio }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class ExerciciosController < ApplicationController
     @exercicio.destroy!
 
     respond_to do |format|
-      format.html { redirect_to exercicios_path, notice: "Exercicio was successfully destroyed.", status: :see_other }
+      format.html { redirect_to exercicios_path, notice: "Exercicio deletado com sucesso.", status: :see_other }
       format.json { head :no_content }
     end
   end
