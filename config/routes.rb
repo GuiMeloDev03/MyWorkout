@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       resources :exercicios_planos, only: [ :new, :create, :edit, :update, :destroy ]
     end
   end
+
+  resources :exercicios
+
   # get "treinos/:treino_id/dia_treinos/:id", to: "dia_treinos#show", as: :treino_dia_treino
 
   root "dietas#index"
