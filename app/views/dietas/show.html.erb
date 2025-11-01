@@ -1,2 +1,69 @@
-<h1>Dietas#show</h1>
-<p>Find me in app/views/dietas/show.html.erb</p>
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="bg-white shadow-2xl rounded-xl p-8">
+    
+    <div class="mb-8 border-b pb-4 flex justify-between items-start">
+      <div>
+        <h1 class="text-4xl font-extrabold text-gray-900"><%= @dieta.nome %></h1>
+      </div>
+      <div class="flex space-x-3 mt-1">
+        <%= link_to 'Editar Dieta', edit_dieta_path(@dieta), 
+          class: "inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition duration-150" %>
+        <%= link_to 'Voltar', dietas_path, 
+          class: "inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-gray-500 hover:bg-gray-600 transition duration-150" %>
+      </div>
+    </div>
+
+    <% if @dieta.refeicoes.any? %>
+      <div class="bg-indigo-50 p-6 rounded-lg shadow-inner mb-8 border border-indigo-200">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-4">Resumo Nutricional Diário</h2>
+        <dl class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div class="p-3 bg-white rounded-lg shadow">
+            <dt class="text-sm font-medium text-gray-500">Calorias (Kcal)</dt>
+            <dd class="mt-1 text-3xl font-extrabold text-indigo-700"><%= @dieta.total_calorias.round(0) %></dd>
+          </div>
+          <div class="p-3 bg-white rounded-lg shadow">
+            <dt class="text-sm font-medium text-gray-500">Proteínas (g)</dt>
+            <dd class="mt-1 text-3xl font-extrabold text-green-700"><%= @dieta.total_proteinas.round(1) %></dd>
+          </div>
+          <div class="p-3 bg-white rounded-lg shadow">
+            <dt class="text-sm font-medium text-gray-500">Carbos (g)</dt>
+            <dd class="mt-1 text-3xl font-extrabold text-yellow-700"><%= @dieta.total_carboidratos.round(1) %></dd>
+          </div>
+          <div class="p-3 bg-white rounded-lg shadow">
+            <dt class="text-sm font-medium text-gray-500">Gorduras (g)</dt>
+            <dd class="mt-1 text-3xl font-extrabold text-red-700"><%= @dieta.total_gorduras.round(1) %></dd>
+          </div>
+        </dl>
+      </div>
+    <% else %>
+      <div class="p-6 bg-yellow-50 border border-yellow-200 rounded-lg text-center mb-8">
+        <p class="text-yellow-700 italic">Esta dieta ainda não possui refeições cadastradas. Adicione uma refeição para ver o resumo nutricional.</p>
+      </div>
+    <% end %>
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Refeições Detalhadas</h2>
+    
+    <% if @dieta.refeicoes.empty? %>
+        <p class="text-gray-500 italic">Clique em "Editar Dieta" para adicionar a primeira refeição.</p>
+    <% else %>
+        <div class="space-y-6">
+          <% @dieta.refeicoes.each do |refeicao| %>
+            <div class="border-l-8 border-indigo-400 bg-gray-50 p-5 rounded-lg shadow-md">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="text-xl font-bold text-gray-800"><%= refeicao.nome %></h3>
+                <span class="text-lg font-semibold text-indigo-600"><%= (refeicao.calorias || 0).round(0) %> Kcal</span>
+              </div>
+
+              <p class="text-sm text-gray-600 mb-3"><%= refeicao.descricao.presence || "Sem descrição de alimentos." %></p>
+              
+              <div class="flex space-x-4 text-sm text-gray-700 border-t pt-3">
+                <span><strong>P:</strong> <%= (refeicao.proteinas || 0).round(1) %>g</span>
+                <span><strong>C:</strong> <%= (refeicao.carboidratos || 0).round(1) %>g</span>
+                <span><strong>G:</strong> <%= (refeicao.gorduras || 0).round(1) %>g</span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
