@@ -57,7 +57,6 @@ class DietasController < ApplicationController
     params.require(:dieta).permit(
       :id,
       :nome,
-      :descricao,
       :calorias,
       :proteinas,
       :carboidratos,
