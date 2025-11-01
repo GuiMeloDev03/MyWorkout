@@ -3,7 +3,9 @@
 one:
   nome: MyString
   grupo_muscular: MyString
+  instrucoes: MyText
 
 two:
   nome: MyString
   grupo_muscular: MyString
+  instrucoes: MyText
