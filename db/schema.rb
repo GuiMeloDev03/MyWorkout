@@ -73,7 +73,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_195256) do
     t.index ["dia_dieta_id"], name: "index_item_refeicaos_on_dia_dieta_id"
   end
 
-  create_table "refeicaos", force: :cascade do |t|
+  create_table "refeicoes", force: :cascade do |t|
     t.integer "dieta_id", null: false
     t.string "nome"
     t.text "descricao"
@@ -83,7 +83,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_195256) do
     t.decimal "gorduras"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["dieta_id"], name: "index_refeicaos_on_dieta_id"
+    t.index ["dieta_id"], name: "index_refeicoes_on_dieta_id"
   end
 
   create_table "treinos", force: :cascade do |t|
@@ -116,6 +116,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_195256) do
   add_foreign_key "exercicio_planos", "exercicios"
   add_foreign_key "item_refeicaos", "alimentos"
   add_foreign_key "item_refeicaos", "dia_dietas"
-  add_foreign_key "refeicaos", "dietas"
+  add_foreign_key "refeicoes", "dietas"
   add_foreign_key "treinos", "users"
 end
