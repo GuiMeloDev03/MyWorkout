@@ -60,11 +60,15 @@ class DiaTreinosController < ApplicationController
     params.require(:dia_treino).permit(
       :id,
       :nome,
-      :series,
-      :repeticoes,
-      :carga,
-      :observacoes,
-      :_destroy
+      exercicio_planos_attributes: [
+        :id,
+        :exercicio_id,
+        :series,
+        :repeticoes,
+        :carga,
+        :observacoes,
+        :_destroy
+      ]
       )
   end
 end
