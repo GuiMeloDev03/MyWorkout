@@ -1,16 +1,26 @@
-<p style="color: green"><%= notice %></p>
+<div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-extrabold text-gray-900">Catálogo de Exercícios</h1>
+    <%= link_to 'Adicionar Novo Exercício', new_exercicio_path, class: "inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150" %>
+  </div>
 
-<% content_for :title, "Exercicios" %>
-
-<h1>Exercicios</h1>
-
-<div id="exercicios">
-  <% @exercicios.each do |exercicio| %>
-    <%= render exercicio %>
-    <p>
-      <%= link_to "Show this exercicio", exercicio %>
-    </p>
-  <% end %>
+  <div class="bg-white shadow-xl rounded-xl overflow-hidden">
+    <% if @exercicios.any? %>
+      <div id="exercicios" class="divide-y divide-gray-200">
+        <% @exercicios.each do |exercicio| %>
+          <%= render exercicio %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="p-10 text-center text-gray-500">
+        <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 002 2h2a2 2 0 002-2" />
+        </svg>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhum exercício cadastrado</h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Comece adicionando novos exercícios para construir seus planos de treino.
+        </p>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New exercicio", new_exercicio_path %>

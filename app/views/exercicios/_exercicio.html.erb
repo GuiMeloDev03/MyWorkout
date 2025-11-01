@@ -1,17 +1,13 @@
-<div id="<%= dom_id exercicio %>">
-  <p>
-    <strong>Nome:</strong>
-    <%= exercicio.nome %>
-  </p>
-
-  <p>
-    <strong>Grupo muscular:</strong>
-    <%= exercicio.grupo_muscular %>
-  </p>
-
-  <p>
-    <strong>Instrucoes:</strong>
-    <%= exercicio.instrucoes %>
-  </p>
-
+<div id="<%= dom_id exercicio %>" class="p-6 hover:bg-gray-50 transition duration-150 flex justify-between items-center">
+  <div>
+    <h2 class="text-xl font-semibold text-indigo-600"><%= exercicio.nome %></h2>
+    <p class="text-sm text-gray-500 mt-1">
+      <span class="font-medium text-gray-700">Grupo Muscular:</span> <%= exercicio.grupo_muscular %>
+    </p>
+  </div>
+  <div class="flex space-x-3 text-sm">
+    <%= link_to "Visualizar", exercicio, class: "font-medium text-indigo-600 hover:text-indigo-900" %>
+    <%= link_to "Editar", edit_exercicio_path(exercicio), class: "font-medium text-gray-600 hover:text-gray-900" %>
+    <%= button_to "Excluir", exercicio, method: :delete, data: { turbo_confirm: "Tem certeza que deseja excluir este exercício?" }, class: "font-medium text-red-600 hover:text-red-900 bg-transparent border-none cursor-pointer p-0 m-0" %>
+  </div>
 </div>

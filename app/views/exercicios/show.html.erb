@@ -1,10 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<div class="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+  <div class="bg-white shadow-xl rounded-xl overflow-hidden">
+    <div class="p-8">
+      <h1 class="text-3xl font-extrabold text-gray-900 mb-2"><%= @exercicio.nome %></h1>
+      <p class="text-lg text-indigo-600 font-medium mb-6"><%= @exercicio.grupo_muscular %></p>
+      
+      <div class="space-y-6">
+        <div>
+          <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-3">Instruções</h2>
+          <div class="text-gray-700 leading-relaxed whitespace-pre-wrap">
+            <%= @exercicio.instrucoes %>
+          </div>
+        </div>
+        
+        <div class="text-sm text-gray-500 border-t pt-4">
+          <p>Criado em: <%= l(@exercicio.created_at, format: :long) %></p>
+          <p>Última atualização: <%= l(@exercicio.updated_at, format: :long) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= render @exercicio %>
-
-<div>
-  <%= link_to "Edit this exercicio", edit_exercicio_path(@exercicio) %> |
-  <%= link_to "Back to exercicios", exercicios_path %>
-
-  <%= button_to "Destroy this exercicio", @exercicio, method: :delete %>
+  <div class="mt-8 flex space-x-4">
+    <%= link_to 'Editar', edit_exercicio_path(@exercicio), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150" %>
+    <%= link_to 'Voltar para a Lista', exercicios_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150" %>
+  </div>
 </div>
