@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_31_195256) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_01_153214) do
   create_table "alimentos", force: :cascade do |t|
     t.string "nome"
     t.integer "calorias"
@@ -39,6 +39,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_31_195256) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "objetivo"
+    t.text "descricao"
     t.index ["user_id"], name: "index_dietas_on_user_id"
   end
 
