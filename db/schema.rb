@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_01_153214) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_01_163842) do
   create_table "alimentos", force: :cascade do |t|
     t.string "nome"
     t.integer "calorias"
@@ -52,6 +52,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_01_153214) do
     t.decimal "carga_planejada"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "carga"
+    t.string "observacoes"
     t.index ["dia_treino_id"], name: "index_exercicio_planos_on_dia_treino_id"
     t.index ["exercicio_id"], name: "index_exercicio_planos_on_exercicio_id"
   end
@@ -61,6 +63,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_01_153214) do
     t.string "grupo_muscular"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "instrucoes"
   end
 
   create_table "item_refeicaos", force: :cascade do |t|
