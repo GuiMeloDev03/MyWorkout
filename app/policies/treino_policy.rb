@@ -15,7 +15,7 @@ class TreinoPolicy < ApplicationPolicy
     record.user == user || user.is_admin?
   end
 
-  def destroy
+  def destroy?
     record.user == user || user.is_admin?
   end
 
