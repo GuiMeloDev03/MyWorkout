@@ -1,0 +1,32 @@
+<%= form_with(model: exercicio) do |form| %>
+  <% if exercicio.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(exercicio.errors.count, "error") %> prohibited this exercicio from being saved:</h2>
+
+      <ul>
+        <% exercicio.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :grupo_muscular, style: "display: block" %>
+    <%= form.text_field :grupo_muscular %>
+  </div>
+
+  <div>
+    <%= form.label :instrucoes, style: "display: block" %>
+    <%= form.textarea :instrucoes %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

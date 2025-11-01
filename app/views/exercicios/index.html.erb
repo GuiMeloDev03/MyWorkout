@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Exercicios" %>
+
+<h1>Exercicios</h1>
+
+<div id="exercicios">
+  <% @exercicios.each do |exercicio| %>
+    <%= render exercicio %>
+    <p>
+      <%= link_to "Show this exercicio", exercicio %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New exercicio", new_exercicio_path %>
