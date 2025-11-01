@@ -1,0 +1,42 @@
+<div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="bg-white shadow-2xl rounded-xl p-8 space-y-6">
+    
+    <h2 class="text-center text-3xl font-extrabold text-gray-900">
+      Cadastrar Nova Conta
+    </h2>
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+      
+      <% if resource.errors.any? %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+          <p class="font-bold"><%= resource.errors.count %> erro(s) impediu o cadastro:</p>
+          <ul class="mt-2 list-disc list-inside text-sm">
+            <% resource.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <%= f.text_field :nome, autofocus: true, required: true, placeholder: "Nome Completo", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+        </div>
+        
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, placeholder: "Email", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+        
+        <%= f.password_field :password, autocomplete: "new-password", required: true, placeholder: "Senha", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+        
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, placeholder: "Confirme a Senha", class: "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+      </div>
+
+      <div>
+        <%= f.submit "Cadastrar", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 cursor-pointer" %>
+      </div>
+    <% end %>
+    
+    <div class="text-center">
+      <%= link_to "Já tem conta? Entrar", new_session_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+    </div>
+  </div>
+</div>
