@@ -1,6 +1,6 @@
 class DietaPolicy < ApplicationPolicy
   def index?
-    record.user == user || user.is_admin?
+    user.present?
   end
 
   def show?
@@ -11,8 +11,12 @@ class DietaPolicy < ApplicationPolicy
     user.present?
   end
 
-  def update
-    record.user == user || user.is_admin?
+  def update?
+    record.user == user
+  end
+
+  def destroy?
+    record.user == user
   end
 
   class Scope < ApplicationPolicy::Scope
